@@ -1,8 +1,34 @@
-import React from 'react'; 
-import ReactDOM from 'react-dom'; //comments for git
+import React, { useState } from 'react'; 
+import ReactDOM from 'react-dom'; 
+import './styles.css'; // Import a CSS file for styling
 
-const App = () => {
-  return <h1>Hello from React!</h1>; // Changed to 'Hello from React!'
+// Greeting Component
+const Greeting = ({ name }) => {
+  return <h2>Hello, {name}!</h2>;
 };
 
-ReactDOM.render(<App />, document.getElementById('root')); // Changed to 'root'
+// Button Component
+const Button = ({ onClick }) => {
+  return <button onClick={onClick}>Click Me!</button>;
+};
+
+// Main App Component
+const App = () => {
+  const [name, setName] = useState('React Enthusiast');
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
+  };
+
+  return (
+    <div className="app-container">
+      <h1>Welcome to My React App!</h1>
+      <Greeting name={name} />
+      <Button onClick={handleClick} />
+      <p>You have clicked the button {clickCount} times.</p>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
